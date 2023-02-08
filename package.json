@@ -1,0 +1,65 @@
+{
+	"name": "three-ts",
+	"version": "0.0.1",
+	"description": "threejs 基础库,提供threeJS 扩展 和 一些公共方法",
+	"main": "dist/index.umd.min.js",
+  "unpkg": "dist/index.umd.min.js",
+	"types": "types/index.d.ts",
+	"files": [
+		"dist",
+		"lib",
+		"esm",
+		"readme.md",
+		"tsconfig.json",
+		"three-extends",
+    "three",
+		"types",
+		"src",
+		"package.json"
+	],
+	"engines": {
+		"pnpm": ">=7"
+	},
+	"scripts": {
+		"prebuild": "rm -rf lib && rm -rf esm",
+		"build": "tsc --build ./src/tsconfig.build.json && tsc --build src/tsconfig.cjs.json",
+		"postbuild": "tsc-alias -p src/tsconfig.build.json && tsc-alias -p src/tsconfig.cjs.json && npm run types",
+		"package": "npm run types && rollup -c  && npm run postpackage",
+		"postpackage": "cp -r examples/. three-extends && node ./scripts/rewrite-three-core.js && echo 'rewrite three--core url...'",
+		"types": "rm -rf types && tsc --build src/tsconfig.types.json && tsc-alias -p src/tsconfig.types.json && node ./scripts/rewrite-examples.js && echo 'rewrite examples url...'",
+		"dev": "vite",
+		"build:demo": "vite build --mode production"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+    "@babel/core": "^7.18.6",
+		"@babel/plugin-transform-runtime": "^7.18.6",
+		"@babel/preset-env": "^7.18.6",
+		"@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^5.3.1",
+		"@rollup/plugin-commonjs": "^22.0.0",
+		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@rollup/plugin-typescript": "^8.3.2",
+		"@typescript-eslint/eslint-plugin": "^5.0.0",
+		"@typescript-eslint/parser": "^5.0.0",
+		"eslint": "^8.0.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"glob": "^8.0.3",
+		"prettier": "^2.3.2",
+		"rollup": "^2.75.4",
+		"rollup-plugin-copy": "^3.4.0",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-terser": "^7.0.2",
+		"tsc-alias": "^1.6.7",
+		"tslib": "^2.4.0",
+		"typescript": "^4.7.2",
+		"vite": "^2.9.9",
+		"vite-tsconfig-paths": "^3.5.0"
+	},
+	"publishConfig": {
+		"registry": "https://persagy2021-npm.pkg.coding.net/yushu_web/npm/"
+	}
+}

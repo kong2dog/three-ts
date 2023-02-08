@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"baseUrl": ".",
+		"jsx": "react",
+		"target": "ES2020",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"strict": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"sourceMap": true,
+        "typeRoots": ["node_modules/@types", "src/types"],
+        "types": [],
+        "allowJs": true,
+		"paths": {
+			"~/*": ["./*"],
+            "~":["./"]
+		}
+	},
+    "include": ["./*.ts","./*.js"],
+	"exclude": ["esm/*", "build/*", "node_modules/*", "lib/*"]
+}
